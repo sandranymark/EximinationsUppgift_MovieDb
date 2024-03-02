@@ -287,19 +287,9 @@ async function updateTrailers(movies) {
 
         const watchBtn = document.createElement('a');
         watchBtn.classList.add('watch-btn', 'play-btn');
-        watchBtn.href = '#';
+        watchBtn.href = `https://youtu.be/${item.trailer.key}`;
+        watchBtn.target = '_blank';
         watchBtn.innerHTML = '<i class="bx bx-right-arrow"></i>';
-
-        // Eventlyssnare för att öppna länken i en ny flik
-        watchBtn.addEventListener('click', function (event) {
-            event.preventDefault();
-            const trailerLink = item.trailer_link;
-            if (trailerLink) {
-                window.open(trailerLink, '_blank');
-            } else {
-                console.error('Trailer link not found.');
-            }
-        });
 
         // Bygg upp strukturen
         boxText.appendChild(movieTitle);
