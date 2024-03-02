@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandras Movie database</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="./styles/style.css">
+    <!-- Link to swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Link to Fav Icon -->
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+
+    <!-- box icons -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER SECTION -->
+    <header>
+
+        <!-- NAVIGATION -->
+        <div class="nav container">
+
+            <!--LOGO-->
+            <a href="./index.html" class="logo">
+                Film<span>Fiesta</span>
+            </a>
+
+            <!-- SEARCH BOX -->
+            <form id="search" class="search-box">
+                <input aria-label="Search for Movie" id="search-input" type="search" name="search-btn"
+                    placeholder="Search movie">
+                <button class="bx bx-search" type="submit"
+                    style="background: none; border: none; color: white"></button>
+            </form>
+
+            <!-- User -->
+            <a href="favourites.html" class="user">
+                <img src="./imgs/user-picture.png" class="user-img" alt="User-picture">
+            </a>
+
+
+            <!-- NAVIGATION BAR -->
+            <nav class="navbar">
+                <a href="index.html" class="nav-link nav-active" id="nav-home">
+                    <i class="bx bx-home"></i>
+                    <span class="nav-link-title">Home</span>
+                </a>
+                <a href="./trending.html" class="nav-link">
+                    <i class="bx bxs-hot"></i>
+                    <span class="nav-link-title">Trending</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="bx bx-compass"></i>
+                    <span class="nav-link-title">Explore</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="bx bx-search" id="searchBtn"></i>
+                    <span class="nav-link-title">Movies</span>
+                </a>
+                <a href="#" class="nav-link" id="nav-favourites">
+                    <i class="bx bx-star"></i>
+                    <span class="nav-link-title">Favourites</span>
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- SEARCH INFO START -->
+    <section class="search__container-results">
+        <div id="movie-info-popup" class="movie-info-popup">
+            <!-- Här kommer filmens information att visas -->
+        </div>
+    </section>
+
+    <!-- HOME  -->
+    <section class="details container d-none" id="movie-details">
+        <div class="heading">
+            <h2 class="heading-title">The Beekeeper</h2>
+        </div>
+        <div class="movies-content">
+            <ul>
+                <li><img src="./imgs/barbie.png" alt="" id="details-poster" style="max-width: 250px;" /></li>
+                <li><span id="details-overview">Lorem ipsum</span></li>
+                <li><strong>Genres:</strong> <span id="details-genres">Comedy, Romance, etc</span></li>
+                <li><strong>Votes:</strong> <span id="details-vote">0/10</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="home container" id="splash-screen">
+        <!-- HOME IMAGE -->
+        <img src="./imgs/barbie.png" class="home-img" alt="Cover of the Barbie movie"></img>
+        <!-- HOME TEXT -->
+        <div class="home-text">
+            <h1 class="home-title">Barbie</h1>
+            <p>Releasing July 9, 2023</p>
+        </div>
+    </section>
+    <!-- HOME END -->
+
+    <section class="home popular container" id="popular">
+
+        <div class="heading">
+            <h2 class="heading-title">Popular Movie-Trailers</h2>
+
+            <div class="swiper-btn">
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+
+        <div class="popular-content swiper">
+            <div class="swiper-wrapper">
+
+                <!-- MOVIES BOX1 -->
+                <div class="swiper-slide">
+                    <div id="trailerBox" class="movie-box">
+                        <iframe src="https://www.youtube.com/embed/uYPbbksJxIg" class="movie-box-img"
+                            alt="Trailer picture" frameborder="0"></iframe>
+
+                        <div class="box-text">
+                            <h2 class="movie-title">Barbie leker igen</h2>
+                            <span class="movie-type">Action</span>
+                            <a href="#" class="watch-btn play-btn">
+                                <i class="bx bx-right-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="home movies container">
+        <!-- HEADING -->
+        <div class="heading">
+            <h2 class="heading-title">IMDb's top 20 movies </h2>
+        </div>
+
+        <!-- MOVIES CONTENT-->
+        <article class="movies-content" id="top-rated-movies">
+            <!-- MOVIES BOX 1 -->
+        </article>
+
+    </section>
+
+    <section class="favourites movies container d-none" id="favourites">
+        <!-- HEADING -->
+        <div class="heading">
+            <h2 class="heading-title">Favourites</h2>
+        </div>
+
+        <!-- MOVIES CONTENT-->
+        <article class="movies-content favourite">
+            <!-- MOVIES BOX 1 -->
+        </article>
+
+    </section>
+
+    <section class="search movies container d-none" id="search-result">
+        <!-- HEADING -->
+        <div class="heading">
+            <h2 class="heading-title">Search result</h2>
+        </div>
+
+        <!-- MOVIES CONTENT-->
+        <article class="movies-content">
+            <!-- MOVIES BOX 1 -->
+        </article>
+
+    </section>
+
+
+    <template id="movie-card-template">
+        <div class="movie-card">
+            <img src="./imgs/barbie.png" alt="" class="movie-box-img">
+            <div class="box-text">
+                <div class="box-text"><i class="bx bx-star fav-star"></i>
+                    <h2 class="movie-title">Barbie leker igen</h2>
+                    <span class="movie-type">Action</span>
+                </div>
+            </div>
+    </template>
+
+
+    <!-- Link to swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Link to JavaScript -->
+    <script type="module" src="./javascripts/app.js"></script>
+</body>
+
+</html>

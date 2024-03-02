@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourites</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <!-- Link to Fav Icon -->
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+    <!-- box icons -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER SECTION -->
+    <header>
+
+        <!-- NAVIGATION -->
+        <div class="nav container">
+
+            <!--LOGO-->
+            <a href="./index.html" class="logo">
+                Film<span>Fiesta</span>
+            </a>
+
+            <!-- SEARCH BOX -->
+            <form class="search-box">
+                <input id="searchInput" type="search" name="search-btn" placeholder="Search movie">
+                <i class="bx bx-search" id="searchBtn"></i> <!-- bx = boxicons OM DU UNDRAR -->
+            </form>
+
+            <!-- User -->
+            <a href="favourites.html" class="user">
+                <img src="./imgs/user-picture.png" class="user-img" alt="User-picture">
+            </a>
+
+            <!-- NAVIGATION BAR -->
+            <nav class="navbar">
+                <a href="index.html" class="nav-link nav-active">
+                    <i class="bx bx-home"></i>
+                    <span class="nav-link-title">Home</span>
+                </a>
+                <a href="#popular" class="nav-link">
+                    <i class="bx bxs-hot"></i>
+                    <span class="nav-link-title">Trending</span>
+                </a>
+                <a href="#explore" class="nav-link">
+                    <i class="bx bx-compass"></i>
+                    <span class="nav-link-title">Explore</span>
+                </a>
+                <a href="./searchMovie.html" class="nav-link">
+                    <i class="bx bx-search" id="searchBtn"></i>
+                    <span class="nav-link-title">Movies</span>
+                </a>
+                <a href="favourites.html" class="nav-link">
+                    <i class="bx bx-star"></i>
+                    <span class="nav-link-title">Favourites</span>
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- MAIN SECTION-->
+    <main class="main">
+        <h1 class="trending-h1"> Trending Movies and TV Shows</h1>
+        <div id="movies" class="trending-movies"></div>
+    </main>
+
+
+    <!-- Link to trending JS -->
+    <script src="./javascripts/trending.js"></script>
+    <!-- Link to JavaScript -->
+    <script src="./javascripts/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+apikey youtube: AIzaSyARvy6lxlSw45ita8-DUKkWJbxLm8q8lD8
+
+Chennel ID for IMDB youtube: UC_vz6SvmIkYs1_H3Wv2SKlg
+
+Latest Uploads id: UU_vz6SvmIkYs1_H3Wv2SKlg
+
+
+https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=15&playlistId=UU_vz6SvmIkYs1_H3Wv2SKlg&key=AIzaSyARvy6lxlSw45ita8-DUKkWJbxLm8q8lD8
+
+
+
+const videoSection = document.querySelector('.movie-box')
+
+getVideos()
+
+function getVideos() {
+
+fetch('https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=15&playlistId=UU_vz6SvmIkYs1_H3Wv2SKlg&key=AIzaSyARvy6lxlSw45ita8-DUKkWJbxLm8q8lD8')
+.then(res => res.json())
+.then(data=>{
+data.items.forEach(element =>{
+videosection.innerHTML += `
+<a target="_blank" href="https://www.youtube.com/watch?v=${element.snippet.resourseId.videId}" class="yt.video">
+    <img src="${element.snippet.thumbnails.maxres.url}" alt="">
+    <h3>${element.snippet.title}</h3>
+</a>`
+
+});
+}).catch(err => {
+console.log(err);
+videoSection.innerHTML = '<h3>Sorry, something went wrong, try again later.</h3>'
+});
+}
+
+
+
+
+
+
+
+
+ onkeyup="findMovies()" onclick="findMovies()
