@@ -50,7 +50,7 @@ async function populateFavourites() {
     console.log('populateFavourites executed.');
 
     const container = document.querySelector('#favourites .movies-content');
-    const favourites = JSON.parse(localStorage.getItem('favouriteMovies'));
+    const favourites = JSON.parse(localStorage.getItem('favouriteMovies')) ?? [];
 
     const result = await Promise.all(
         favourites.map(async movieId => cache.get(movieId, async () => await api.getDetails(movieId))));
@@ -97,7 +97,7 @@ async function searchUpdatedHandler(e) {
 function renderMovieCards(element, items) {
 
     const template = document.getElementById('movie-card-template');
-    var favourites = JSON.parse(localStorage.getItem('favouriteMovies'));
+    var favourites = JSON.parse(localStorage.getItem('favouriteMovies')) ?? [];
 
     element.innerHTML = '';
 
