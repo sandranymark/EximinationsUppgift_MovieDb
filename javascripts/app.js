@@ -147,7 +147,8 @@ function renderMovieCards(element, items) {
         element.appendChild(card);
     });
 }
-//HÄR ÄR SÖK FUNKTIONEN HÄR LÄGGER JAG TILL 
+
+//<---------------Search function for the search bar------------>
 
 async function showMovieDetails(movie) {
     const details = await api.getDetails(movie.id);
@@ -161,6 +162,7 @@ async function showMovieDetails(movie) {
     document.getElementById('details-vote').textContent = `${Math.round(details.vote_average)}/10`;
     document.getElementById('details-title').textContent = details.title;
     document.getElementById('details-release').textContent = details.release_date;
+
 
     navigate('details');
 }
@@ -255,7 +257,7 @@ async function updateTrailers(movies) {
         movieIframe.classList.add('movie-box-img');
         movieIframe.src = `https://www.youtube.com/embed/${item.trailer.key}`;
         movieIframe.alt = item.details.title;
-        movieIframe.frameBorder = 0; // tar bort ful svart kant runt Frilmrutorna
+        movieIframe.frameBorder = 0; // Removes ugly black frame around the video
 
         const boxText = document.createElement('div');
         boxText.classList.add('box-text');
