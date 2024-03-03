@@ -49,7 +49,7 @@
                     <i class="bx bx-home"></i>
                     <span class="nav-link-title">Home</span>
                 </a>
-                <a href="./trending.html" class="nav-link">
+                <a href="#" class="nav-link">
                     <i class="bx bxs-hot"></i>
                     <span class="nav-link-title">Trending</span>
                 </a>
@@ -59,7 +59,7 @@
                 </a>
                 <a href="#" class="nav-link">
                     <i class="bx bx-search" id="searchBtn"></i>
-                    <span class="nav-link-title">Movies</span>
+                    <span class="nav-link-title ">Movies</span>
                 </a>
                 <a href="#" class="nav-link" id="nav-favourites">
                     <i class="bx bx-star"></i>
@@ -70,24 +70,42 @@
         </div>
     </header>
 
-    <!-- SEARCH INFO START -->
-    <section class="search__container-results">
-        <div id="movie-info-popup" class="movie-info-popup">
-            <!-- Här kommer filmens information att visas -->
-        </div>
-    </section>
+
 
     <!-- HOME  -->
     <section class="details container d-none" id="movie-details">
         <div class="heading">
-            <h2 class="heading-title">The Beekeeper</h2>
+            <h2 id="details-title" class="heading-title">Movie Title</h2>
         </div>
-        <div class="movies-content">
+        <div class="movies-content search-content">
             <ul>
-                <li><img src="./imgs/barbie.png" alt="" id="details-poster" style="max-width: 250px;" /></li>
-                <li><span id="details-overview">Lorem ipsum</span></li>
-                <li><strong>Genres:</strong> <span id="details-genres">Comedy, Romance, etc</span></li>
-                <li><strong>Votes:</strong> <span id="details-vote">0/10</span></li>
+                <li><img src="./imgs/barbie.png" alt="" id="details-poster" style="max-width: 250px;" /></li><br>
+                <li>
+                    <p class="search-content-bold"><strong>Relese date:</strong></p>
+                    <p id="details-release"> 2024-20-12</p>
+                </li>
+                <li>
+                    <p id="details-overview">Lorem ipsum</p>
+                </li>
+                <li>
+                    <p class="search-content-bold"><strong>
+                            Genres:
+                        </strong>
+                    <p id="details-genres">Comedy, Romance, etc</p>
+                    </p>
+
+                </li>
+                <li>
+                    <p class="search-content-bold"><strong>
+                            Votes:
+                        </strong>
+                    <p id="details-vote">0/10</p>
+                    </p>
+                </li>
+
+
+
+
             </ul>
         </div>
     </section>

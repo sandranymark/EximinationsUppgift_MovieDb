@@ -1,11 +1,17 @@
 'use strict';
+//Imported modules
+
 import * as api from "./api.js";
 import { Cache } from "./cache.js";
 import { initializeSwiper } from "./swiperModule.js";
 
+// Creating a cache instance to store movie details temporarily
 const cache = new Cache();
 
+// Adding an event listener for when the window has fully loaded
 window.addEventListener('load', async () => {
+
+    // Retrieving DOM elements needed for interaction
 
     const search = document.getElementById('search');
     const favourites = document.getElementById('favourites');
@@ -13,11 +19,12 @@ window.addEventListener('load', async () => {
     const favouritesBtn = document.getElementById('nav-favourites');
     const userBtn = document.querySelector('.user');
 
-    // Populate asynchroneously
+    // Populating different sections asynchronously once the page is loaded
     setTimeout(() => populateTrendingMovies(), 0);
     setTimeout(() => populateTopRatedMovies(), 0);
     setTimeout(() => populateFavourites(), 0);
 
+    // Event listeners for navigation buttons
     homeBtn.addEventListener('click', (e) => {
         e.preventDefault();
         navigate('home')
@@ -33,23 +40,28 @@ window.addEventListener('load', async () => {
         navigate('favourites');
     });
 
+    // Event listeners for search and favourites
     search.addEventListener('submit', searchUpdatedHandler);
     favourites.addEventListener('click', populateFavourites);
     document.addEventListener('favouritesUpdated', populateFavourites);
 });
 
+// Function to populate top rated movies
 async function populateTopRatedMovies() {
     const topRatedMoviesContainer = document.getElementById('top-rated-movies');
+    // Fetching top-rated movies data from the API
     const topRatedMovies = await api.getTopRatedMovies();
-
+    // Rendering the fetched movies onto the page
     renderMovieCards(topRatedMoviesContainer, topRatedMovies);
 }
 
+// Function to populate favourites
 async function populateFavourites() {
 
     console.log('populateFavourites executed.');
 
     const container = document.querySelector('#favourites .movies-content');
+    // Retrieving favourite movie IDs from local storage or initializing an empty array if there are no favourites.
     const favourites = JSON.parse(localStorage.getItem('favouriteMovies')) ?? [];
 
     const result = await Promise.all(
@@ -59,6 +71,7 @@ async function populateFavourites() {
     renderMovieCards(container, result);
 }
 
+// Function to populate trending movies
 async function populateTrendingMovies() {
 
     console.log('populateTrendingMovies executed.')
@@ -82,6 +95,7 @@ async function populateTrendingMovies() {
     updateTrailers(shuffled);
 }
 
+// Event handler for search update
 async function searchUpdatedHandler(e) {
     e.preventDefault();
     const query = document.getElementById('search-input').value;
@@ -94,6 +108,7 @@ async function searchUpdatedHandler(e) {
     renderMovieCards(container, searchResult);
 }
 
+// Function to render movie cards
 function renderMovieCards(element, items) {
 
     const template = document.getElementById('movie-card-template');
@@ -111,6 +126,7 @@ function renderMovieCards(element, items) {
         const watchBtn = card.querySelector('.watch-btn');
         const star = card.querySelector('.fav-star');
 
+        // Setting attributes and content
         wrapper.setAttribute('data-id', item.id);
         thumbnail.src = item.poster_path !== null ? `https://image.tmdb.org/t/p/w500/${item.poster_path}` : '../imgs/image_not_found.png';
         thumbnail.alt = item.title;
@@ -131,6 +147,7 @@ function renderMovieCards(element, items) {
         element.appendChild(card);
     });
 }
+//HÄR ÄR SÖK FUNKTIONEN HÄR LÄGGER JAG TILL 
 
 async function showMovieDetails(movie) {
     const details = await api.getDetails(movie.id);
@@ -142,6 +159,8 @@ async function showMovieDetails(movie) {
     document.getElementById('details-overview').textContent = details.overview;
     document.getElementById('details-genres').textContent = combinedGenres;
     document.getElementById('details-vote').textContent = `${Math.round(details.vote_average)}/10`;
+    document.getElementById('details-title').textContent = details.title;
+    document.getElementById('details-release').textContent = details.release_date;
 
     navigate('details');
 }
@@ -201,52 +220,12 @@ initializeSwiper();
 
 
 
-//<---------------------LILLA SEARCH FÄLTET --------------------------------->
-function fetchAndDisplayMovieInfo(movieTitle) {
-    // Anropa API:et med den sökta filmens titel
-    fetch(`http://www.omdbapi.com/?apikey=3bef2d52&plot=full&t=${movieTitle}`)
-        .then(response => response.json())
-        .then(data => {
-            // Skapa en sträng för att visa filmens information
-            const movieInfo = `
-             <h2 class"searchTitle"=>${data.Title}</h2>
-            <img src="${data.Poster}" class="search-img" alt="${data.Title} Poster">
-            <p class="searchTextRelese"><strong>Released:</strong> ${data.Released}</p>
-                <p class="searchTextGenre"><strong>Genre:</strong> ${data.Genre}</p>
-                <p class="searchTextPlot"><strong>Plot:</strong> ${data.Plot}</p>
-
-
-            `;
-
-            // Hämta det HTML-elementet där jag vill visa filmens information
-            const movieInfoPopup = document.querySelector('#home');
-
-            // Fyller i filmens information i rutan
-            movieInfoPopup.innerHTML = movieInfo;
-
-            // Visa den nya rutan med filmens information
-            movieInfoPopup.style.display = 'block';
-        })
-        .catch(error => {
-            console.error('Error fetching movie information:', error);
-        });
-}
-
-// Lyssna på sökevenemanget och visa filmens information när användaren söker
-document.getElementById('searchBtn').addEventListener('click', function () {
-    const searchInput = document.getElementById('searchInput').value;
-    fetchAndDisplayMovieInfo(searchInput);
-});
-//<----------------------------------------------SEARCH SECTION END-------------------------------------------------->
-
-
 
 
 
 //<-------------------------------------POPULAR SECTION - RANDOM TRAILERS----START--------------------------------->
 
-//Hämtar Trailers från fetch.js Modulen.
-//fetchTrailers();
+
 
 
 function shuffleArray(array) {

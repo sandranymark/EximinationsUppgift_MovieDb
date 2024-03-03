@@ -1,4 +1,11 @@
+/**
+  Cache class to store and retrieve data efficiently using key-based lookup.
+  It utilizes a Map data structure for fast access.
+ */
+
 class Cache {
+
+    //Constructs a new Cache instance with an empty Map.
     constructor() {
         this.cache = new Map(); // Using Map for fast key-based lookup
     }
